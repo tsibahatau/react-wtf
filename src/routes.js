@@ -7,7 +7,7 @@ import NotFoundPage from './components/pages/pageNotFound';
 import HomePage from './components/pages/homePage';
 import Register from './components/auth/register';
 import Login from './components/auth/login';
-import Dashboard from './components/dashboard';
+import Blog from './components/Blog';
 import RequireAuth from './components/auth/requireAuth';
 
 export default (
@@ -15,7 +15,7 @@ export default (
         <IndexRoute component={HomePage} />
         <Route path="register" component={Register} />
         <Route path="login" component={Login} />
-        <Route path="dashboard" component={RequireAuth(Dashboard)} />
+        <Route path="blog" component={RequireAuth(Blog)} />
 
         <Route path="*" component={NotFoundPage} />
     </Route>

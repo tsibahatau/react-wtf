@@ -13,11 +13,11 @@ class Login extends Component {
     this.props.loginUser(formProps);
   }
 
-  renderAlert() {
+  renderError() {
     if(this.props.errorMessage) {
       return (
         <div>
-          <span><strong>Error!</strong> {this.props.errorMessage}</span>
+          <span>{ this.props.errorMessage }</span>
         </div>
       );
     }
@@ -29,7 +29,7 @@ class Login extends Component {
     return (
       <div>
         <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-          {this.renderAlert()}
+          {this.renderError()}
           <div>
             <label>Email</label>
             <Field name="email" className="form-control" component="input" type="text" />

@@ -4,7 +4,7 @@ import cookie from 'react-cookie';
 import { AUTH_USER,
   AUTH_ERROR,
   UNAUTH_USER,
-  PROTECTED_TEST } from './types';
+  BLOG_ACCESS } from './types';
 export const API_URL = 'http://localhost:3000/api';
 
 export function errorHandler(dispatch, error, type) {
@@ -38,7 +38,7 @@ export function loginUser({ email, password }) {
       .then(response => {
         cookie.save('token', response.data.token, { path: '/' });
         dispatch({ type: AUTH_USER });
-        browserHistory.push('/dashboard');
+        browserHistory.push('/blog');
       })
       .catch((error) => {
         console.log('error' + error);
@@ -53,7 +53,7 @@ export function registerUser({ email, firstName, lastName, password }) {
       .then(response => {
         cookie.save('token', response.data.token, { path: '/' });
         dispatch({ type: AUTH_USER });
-        browserHistory.push('/dashboard');
+        browserHistory.push('/blog');
       })
       .catch((error) => {
         errorHandler(dispatch, error.response, AUTH_ERROR)
@@ -70,14 +70,14 @@ export function logoutUser() {
   }
 }
 
-export function protectedTest() {
+export function getBlogPosts() {
   return function(dispatch) {
-    axios.get(`${API_URL}/protected`, {
+    axios.get(`${API_URL}/blogs`, {
       headers: { 'Authorization': cookie.load('token') }
     })
       .then(response => {
         dispatch({
-          type: PROTECTED_TEST,
+          type: BLOG_ACCESS,
           payload: response.data.content
         });
       })

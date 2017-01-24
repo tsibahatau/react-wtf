@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
-class Dashboard extends Component {
+class Blog extends Component {
 
     constructor(props) {
         super(props);
 
-        this.props.protectedTest();
+        this.props.getBlogPosts();
     }
 
     renderContent() {
@@ -31,4 +31,4 @@ function mapStateToProps(state) {
     return { content: state.auth.content };
 }
 
-export default connect(mapStateToProps, actions)(Dashboard);
+export default connect(mapStateToProps, actions)(Blog);

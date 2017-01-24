@@ -3,10 +3,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { registerUser } from '../../actions';
 
-const form = reduxForm({
-  form: 'register',
-  validate
-});
+
 
 const renderField = field => (
   <div>
@@ -19,19 +16,19 @@ function validate(formProps) {
   const errors = {};
 
   if (!formProps.firstName) {
-    errors.firstName = 'Please enter a first name';
+    errors.firstName = 'no first name';
   }
 
   if (!formProps.lastName) {
-    errors.lastName = 'Please enter a last name';
+    errors.lastName = 'no last name';
   }
 
   if (!formProps.email) {
-    errors.email = 'Please enter an email';
+    errors.email = 'no email';
   }
 
   if (!formProps.password) {
-    errors.password = 'Please enter a password';
+    errors.password = 'no password';
   }
 
   return errors;
@@ -42,11 +39,11 @@ class Register extends Component {
     this.props.registerUser(formProps);
   }
 
-  renderAlert() {
+  renderError() {
     if(this.props.errorMessage) {
       return (
         <div>
-          <span><strong>Error!</strong> {this.props.errorMessage}</span>
+          <span>{ this.props.errorMessage }</span>
         </div>
       );
     }
@@ -57,7 +54,7 @@ class Register extends Component {
 
     return (
       <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-        {this.renderAlert()}
+        { this.renderError() }
         <div className="row">
           <div className="col-md-6">
             <label>First Name</label>
@@ -92,5 +89,10 @@ function mapStateToProps(state) {
     message: state.auth.message
   };
 }
+
+const form = reduxForm({
+  form: 'register',
+  validate
+});
 
 export default connect(mapStateToProps, { registerUser })(form(Register));
