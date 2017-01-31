@@ -1,7 +1,8 @@
 import { AUTH_USER,
   UNAUTH_USER,
   AUTH_ERROR,
-  BLOG_ACCESS } from '../actions/types';
+  BLOG_ACCESS,
+  BLOG_ADD} from '../actions/types';
 
 const INITIAL_STATE = { error: '', message: '', content: '', authenticated: false}
 
@@ -15,6 +16,10 @@ export default function (state = INITIAL_STATE, action) {
       return { ...state, error: action.payload };
     case BLOG_ACCESS:
       return { ...state, content: action.payload };
+    case  BLOG_ADD:
+      const { content } = state;
+      debugger;
+      return {...state, content: content.concat(action.payload)};
   }
 
   return state;
