@@ -10,7 +10,6 @@ class Logout extends Component {
   }
 
   componentDidMount(){
-    debugger;
     this.props.dispatch(logoutUser());
   }
 

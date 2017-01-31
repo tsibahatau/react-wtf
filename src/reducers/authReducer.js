@@ -17,9 +17,7 @@ export default function (state = INITIAL_STATE, action) {
     case BLOG_ACCESS:
       return { ...state, content: action.payload };
     case  BLOG_ADD:
-      const { content } = state;
-      debugger;
-      return {...state, content: content.concat(action.payload)};
+      return {...state, content: state.content.concat(action.payload)};
   }
 
   return state;

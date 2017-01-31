@@ -6,7 +6,7 @@ import { AUTH_USER,
   UNAUTH_USER,
   BLOG_ACCESS,
   BLOG_ADD} from './types';
-export const API_URL = 'http://localhost:3000/api';
+export const API_URL = 'https://afternoon-thicket-27602.herokuapp.com/api';
 
 export function errorHandler(dispatch, error, type) {
   let errorMessage = '';
@@ -97,7 +97,6 @@ export function createPost(postData) {
       headers: { 'Authorization': cookie.load('token') }
     })
       .then(response => {
-        debugger;
         dispatch({
           type: BLOG_ADD,
           payload: response.data.content
